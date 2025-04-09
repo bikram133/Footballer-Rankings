@@ -1,0 +1,84 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+const players = [
+  { rank: 1, name: "Pelé", achievements: "3× World Cup winner, 1000+ goals", image: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Pele_1970.jpg" },
+  { rank: 2, name: "Lionel Messi", achievements: "8× Ballon d'Or, World Cup winner", image: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Lionel_Messi_20180626.jpg" },
+  { rank: 3, name: "Diego Maradona", achievements: "World Cup winner, Napoli legend", image: "https://upload.wikimedia.org/wikipedia/commons/3/34/Diego_Maradona_Argentina_1986.jpg" },
+  { rank: 4, name: "Cristiano Ronaldo", achievements: "5× Ballon d'Or, Euro & Nations League winner", image: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg" },
+  { rank: 5, name: "Zinedine Zidane", achievements: "World Cup, Euro, Champions League winner", image: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Zinedine_Zidane_2008.jpg" },
+  { rank: 6, name: "Johan Cruyff", achievements: "3× Ballon d'Or, Total Football pioneer", image: "https://upload.wikimedia.org/wikipedia/commons/2/20/Johan_Cruyff_1974c.jpg" },
+  { rank: 7, name: "Franz Beckenbauer", achievements: "2× Ballon d'Or, World Cup as player and coach", image: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Franz_Beckenbauer_2012.jpg" },
+  { rank: 8, name: "Ronaldinho", achievements: "Ballon d'Or, World Cup, Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/4/47/Ronaldinho_10-06-2012.jpg" },
+  { rank: 9, name: "Ronaldo Nazário", achievements: "2× Ballon d'Or, 2× World Cup winner", image: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Ronaldo_Nazario_2010.jpg" },
+  { rank: 10, name: "Michel Platini", achievements: "3× Ballon d'Or, Euro winner", image: "https://upload.wikimedia.org/wikipedia/commons/4/42/Michel_Platini_2011.jpg" },
+  { rank: 11, name: "Garrincha", achievements: "2× World Cup winner, dribbling legend", image: "https://upload.wikimedia.org/wikipedia/commons/3/35/Garrincha-Brazil-1962.jpg" },
+  { rank: 12, name: "George Best", achievements: "Ballon d'Or, Manchester United icon", image: "https://upload.wikimedia.org/wikipedia/commons/e/e3/George_Best_1976.jpg" },
+  { rank: 13, name: "Roberto Baggio", achievements: "Ballon d'Or, World Cup runner-up", image: "https://upload.wikimedia.org/wikipedia/commons/6/67/Roberto_Baggio_2013.jpg" },
+  { rank: 14, name: "Marco van Basten", achievements: "3× Ballon d'Or, Euro winner", image: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Marco_van_Basten_2012.jpg" },
+  { rank: 15, name: "Lev Yashin", achievements: "Only goalkeeper to win Ballon d'Or", image: "https://upload.wikimedia.org/wikipedia/commons/1/14/Lev_Yashin_1965.jpg" },
+  { rank: 16, name: "Paolo Maldini", achievements: "AC Milan legend, 5× European Cup winner", image: "https://upload.wikimedia.org/wikipedia/commons/f/f4/Paolo_Maldini_2008.jpg" },
+  { rank: 17, name: "Lothar Matthäus", achievements: "World Cup winner, Ballon d'Or", image: "https://upload.wikimedia.org/wikipedia/commons/e/ed/Lothar_Matthaeus_2008.jpg" },
+  { rank: 18, name: "Andrés Iniesta", achievements: "World Cup, 2× Euro, 4× Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/4/46/Andres_Iniesta_2017.jpg" },
+  { rank: 19, name: "Xavi Hernández", achievements: "World Cup, 2× Euro, 4× Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Xavi_Hernandez_2012.jpg" },
+  { rank: 20, name: "Thierry Henry", achievements: "World Cup, Euro, Arsenal legend", image: "https://upload.wikimedia.org/wikipedia/commons/8/80/Thierry_Henry_NY_Red_Bulls.jpg" },
+  { rank: 21, name: "Ferenc Puskás", achievements: "Real Madrid legend, Olympic gold, 84 goals in 85 games for Hungary", image: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Ferenc_Puskas_1955.jpg" },
+  { rank: 22, name: "Alfredo Di Stéfano", achievements: "5× European Cups, Real Madrid icon", image: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Di_Stefano_1953.jpg" },
+  { rank: 23, name: "Karl-Heinz Rummenigge", achievements: "2× Ballon d'Or, World Cup finalist", image: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Karl-Heinz_Rummenigge_2013.jpg" },
+  { rank: 24, name: "Bobby Charlton", achievements: "World Cup winner, Ballon d'Or", image: "https://upload.wikimedia.org/wikipedia/commons/3/32/Bobby_Charlton_1966.jpg" },
+  { rank: 25, name: "Eusébio", achievements: "Ballon d'Or, Golden Boot at 1966 World Cup", image: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Eusebio_1966.jpg" },
+  { rank: 26, name: "Kaká", achievements: "Ballon d'Or, World Cup, Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/1/12/Kaka_Milan.jpg" },
+  { rank: 27, name: "Romário", achievements: "World Cup winner, 1000+ goals claim", image: "https://upload.wikimedia.org/wikipedia/commons/3/35/Romario_2015.jpg" },
+  { rank: 28, name: "Ryan Giggs", achievements: "13× Premier League titles", image: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Ryan_Giggs_2014.jpg" },
+  { rank: 29, name: "Eric Cantona", achievements: "4× Premier League titles, United icon", image: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Eric_Cantona_2011.jpg" },
+  { rank: 30, name: "Dennis Bergkamp", achievements: "Dutch genius, Arsenal legend", image: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Dennis_Bergkamp_2014.jpg" },
+  { rank: 31, name: "Ruud Gullit", achievements: "Ballon d'Or, Euro winner", image: "https://upload.wikimedia.org/wikipedia/commons/7/76/Ruud_Gullit_2008.jpg" },
+  { rank: 32, name: "Frank Rijkaard", achievements: "Euro winner, Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/6/65/Frank_Rijkaard_2011.jpg" },
+  { rank: 33, name: "Gianni Rivera", achievements: "Ballon d'Or, European champion", image: "https://upload.wikimedia.org/wikipedia/commons/2/27/Gianni_Rivera_1970.jpg" },
+  { rank: 34, name: "Sandro Mazzola", achievements: "European Cup, Inter legend", image: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Sandro_Mazzola_1971.jpg" },
+  { rank: 35, name: "Zico", achievements: "Brazilian legend, Flamengo icon", image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Zico_2008.jpg" },
+  { rank: 36, name: "Hristo Stoichkov", achievements: "Ballon d'Or, Barcelona great", image: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Hristo_Stoichkov_2011.jpg" },
+  { rank: 37, name: "Roberto Carlos", achievements: "World Cup, 3× Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Roberto_Carlos_2015.jpg" },
+  { rank: 38, name: "Iker Casillas", achievements: "World Cup, 2× Euro, 3× Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Iker_Casillas_2015.jpg" },
+  { rank: 39, name: "Gianluigi Buffon", achievements: "World Cup winner, legendary keeper", image: "https://upload.wikimedia.org/wikipedia/commons/5/58/Gianluigi_Buffon_2017.jpg" },
+  { rank: 40, name: "Philipp Lahm", achievements: "World Cup, Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Philipp_Lahm_2014.jpg" },
+  { rank: 41, name: "Sergio Ramos", achievements: "World Cup, 2× Euro, 4× Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Sergio_Ramos_2017.jpg" },
+  { rank: 42, name: "Andrea Pirlo", achievements: "World Cup, Champions League winner", image: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Andrea_Pirlo_2014.jpg" },
+  { rank: 43, name: "Cafu", achievements: "2× World Cup winner", image: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Cafu_2014.jpg" },
+  { rank: 44, name: "Didier Drogba", achievements: "Champions League, African legend", image: "https://upload.wikimedia.org/wikipedia/commons/7/77/Didier_Drogba_2012.jpg" },
+  { rank: 45, name: "Samuel Eto'o", achievements: "4× African POTY, 3× Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Samuel_Etoo_2011.jpg" },
+  { rank: 46, name: "David Beckham", achievements: "Champions League, global icon", image: "https://upload.wikimedia.org/wikipedia/commons/1/1d/David_Beckham_2010.jpg" },
+  { rank: 47, name: "Zlatan Ibrahimović", achievements: "Over 500 goals, 11 league titles", image: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Zlatan_Ibrahimovic_2014.jpg" },
+  { rank: 48, name: "Wayne Rooney", achievements: "England's top scorer, Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Wayne_Rooney_2017.jpg" },
+  { rank: 49, name: "Luis Suárez", achievements: "European Golden Shoes, Copa América", image: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Luis_Suarez_2018.jpg" },
+  { rank: 50, name: "Neymar Jr.", achievements: "Olympic gold, Champions League", image: "https://upload.wikimedia.org/wikipedia/commons/3/31/Neymar_2018.jpg" },
+];
+
+export default function Top100FootballPlayers() {
+  return (
+    <div className="max-w-4xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6 text-center">Top 100 Football Players of All Time</h1>
+      <ScrollArea className="h-[70vh] rounded-lg border p-4">
+        <div className="grid gap-4">
+          {players.map((player) => (
+            <Card key={player.rank} className="bg-white shadow-md rounded-2xl p-4">
+              <CardContent>
+                <div className="flex items-center gap-4">
+                  <div className="text-xl font-bold w-10 text-right">{player.rank}</div>
+                  {player.image && (
+                    <img src={player.image} alt={player.name} className="w-16 h-16 object-cover rounded-full" />
+                  )}
+                  <div>
+                    <div className="text-lg font-semibold">{player.name}</div>
+                    <div className="text-sm text-gray-600">{player.achievements}</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </ScrollArea>
+    </div>
+  );
+}
